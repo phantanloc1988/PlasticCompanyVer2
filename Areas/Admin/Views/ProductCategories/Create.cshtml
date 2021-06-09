@@ -1,0 +1,46 @@
+﻿@model PlasticCompany.Areas.Admin.ViewModels.ProductCategories.requestCreateProductCategory
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{ 
+    var level = ViewBag.Level;
+    var cateList = ViewBag.CategoriesList as List<PlasticCompany.Models.ProductCategory>;
+    
+}
+
+<div style="margin-left:30%">
+    <h2 class="h4">Tạo danh mục</h2>
+    <div class="row">
+        <form method="post" asp-area="Admin" asp-controller="ProductCategories" asp-action="Create" class="col-4">
+            @{
+                if (level == 2)
+                {
+                    var cateListLevel1 = cateList.Where(x => x.Level == 1).ToList();
+
+                    <div class="mb-4">
+                        <label class="my-1 mr-2" for="country">Country</label>
+                        <select class="form-select" aria-label="Default select example" asp-for="ParentId">
+                            <option selected="">Chọn danh mục cấp 1</option>
+                            @foreach (var item in cateListLevel1)
+                            {
+                                <option value=@item.ProductCategoryId>@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                }
+            }
+            <div class="mb-4">
+                <label for="usernameValidate">Username</label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="....">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">Thêm danh mục</button>
+            <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Huỷ</button>
+        </form>
+    </div>
+</div>
+
+
+

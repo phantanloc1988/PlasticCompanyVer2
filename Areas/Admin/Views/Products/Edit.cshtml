@@ -1,0 +1,54 @@
+﻿@model PlasticCompany.Models.Product
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    
+}
+@{ 
+    var categoriesList = ViewBag.Categories as List<ProductCategory>;
+}
+
+<h2 class="h4">Chỉnh sửa sản phẩm</h2>
+<div class="row" id="edit-product">
+    <form id="edit-product-form" action="/Admin/Products/Edit" method="post">
+        <div class="col-12">
+            <p class="text-info mb-0"></p>
+        </div>
+        <div class="col-12 Info">
+            <div class="row">
+                <div class="col-4">
+                    <div class="mb-4">
+                        <label>Tên sản phẩm</label>
+                        <input name="txtName" placeholder="@Model.Name"type="text" class="form-control" aria-describedby="emailHelp">
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label>Mã sản phẩm</label>
+                        <input name="txtSku" placeholder="Model.Sku" type="text" class="form-control" aria-describedby="emailHelp">
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label>Giá</label><br>
+                        <small class="form-text text-muted">"Giá liên hệ": vui lòng nhập giá bằng 0</small>
+                        <input name="numPrice" placeholder=" @Model.Price" type="number" class="form-control" aria-describedby="emailHelp">
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Hình ảnh</label>
+                        <input name="files" class="form-control" type="file" id="formFile">
+                        <div class="main-image">
+                            <img src="@Model.MainImage"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-4 col-12">
+                    <label for="textarea">Mô tả sản phẩm</label>
+                    <div class="description-content d-none">@Html.Raw(Model.Description)</div>
+                    <textarea id="description-content-editor" name="editordata"></textarea>
+                </div>
+            </div>
+            <button id="submit-button" class="btn btn-tertiary" type="submit">Sửa sản phẩm</button>
+            <a class="btn btn-danger" href="/Admin/Products/Edit">Huỷ</a>
+        </div>
+    </form>
+</div>

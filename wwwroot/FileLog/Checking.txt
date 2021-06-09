@@ -1,0 +1,32 @@
+6/8/2021 8:48:44 AM - Unable to track an instance of type 'About' because it does not have a primary key. Only entity types with primary keys may be tracked.
+6/8/2021 8:48:45 AM -    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity)
+   at Microsoft.EntityFrameworkCore.DbContext.EntryWithoutDetectChanges[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.DbContext.AddAsync[TEntity](TEntity entity, CancellationToken cancellationToken)
+   at PlasticCompany.Areas.Admin.Services.InformationServices.InformationServices.CreateAbout(String data, List`1 files) in D:\Lap Trinh\NewProjects\PlasticCompany\Areas\Admin\Services\InformationServices\InformationServices.cs:line 37
+6/8/2021 8:48:45 AM - Microsoft.EntityFrameworkCore
+6/8/2021 10:00:18 AM - Unable to track an instance of type 'Contact' because it does not have a primary key. Only entity types with primary keys may be tracked.
+6/8/2021 10:00:18 AM -    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity)
+   at Microsoft.EntityFrameworkCore.DbContext.EntryWithoutDetectChanges[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.DbContext.AddAsync[TEntity](TEntity entity, CancellationToken cancellationToken)
+   at PlasticCompany.Areas.Admin.Services.InformationServices.InformationServices.CreateContact(String content) in D:\Lap Trinh\NewProjects\PlasticCompany\Areas\Admin\Services\InformationServices\InformationServices.cs:line 82
+6/8/2021 10:00:18 AM - Microsoft.EntityFrameworkCore
+6/8/2021 10:00:56 AM - Unable to track an instance of type 'Contact' because it does not have a primary key. Only entity types with primary keys may be tracked.
+6/8/2021 10:00:56 AM -    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity)
+   at Microsoft.EntityFrameworkCore.DbContext.EntryWithoutDetectChanges[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.DbContext.AddAsync[TEntity](TEntity entity, CancellationToken cancellationToken)
+   at PlasticCompany.Areas.Admin.Services.InformationServices.InformationServices.CreateContact(String content) in D:\Lap Trinh\NewProjects\PlasticCompany\Areas\Admin\Services\InformationServices\InformationServices.cs:line 82
+6/8/2021 10:00:56 AM - Microsoft.EntityFrameworkCore
+6/8/2021 3:25:00 PM - Unable to track an instance of type 'Image' because it does not have a primary key. Only entity types with primary keys may be tracked.
+6/8/2021 3:25:00 PM -    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity)
+   at Microsoft.EntityFrameworkCore.DbContext.EntryWithoutDetectChanges[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.DbContext.AddAsync[TEntity](TEntity entity, CancellationToken cancellationToken)
+   at PlasticCompany.Areas.Admin.Services.BannerServices.BannerServices.CreateBanner(Int32 index, IFormFile file) in D:\Lap Trinh\NewProjects\PlasticCompany\Areas\Admin\Services\BannerServices\BannerServices.cs:line 46
+6/8/2021 3:25:00 PM - Microsoft.EntityFrameworkCore
+6/8/2021 3:31:19 PM - Could not find a part of the path 'D:\Lap Trinh\NewProjects\PlasticCompany\Images\Other\0c1c927c-6c0a-4aa7-9fba-ee9679d3dfeeASB0020-1.jpg'.
+6/8/2021 3:31:19 PM -    at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at PlasticCompany.Common.MyServices.MyServices.SaveFile(String folderPath, IFormFile File, String nameFile) in D:\Lap Trinh\NewProjects\PlasticCompany\Common\MyServices\MyServices.cs:line 18
+   at PlasticCompany.Areas.Admin.Services.BannerServices.BannerServices.CreateBanner(Int32 index, IFormFile file) in D:\Lap Trinh\NewProjects\PlasticCompany\Areas\Admin\Services\BannerServices\BannerServices.cs:line 34
+6/8/2021 3:31:19 PM - System.Private.CoreLib

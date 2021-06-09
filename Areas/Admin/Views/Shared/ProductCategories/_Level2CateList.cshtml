@@ -1,0 +1,18 @@
+﻿@model List<PlasticCompany.Models.ProductCategory>;
+@{
+    if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <li data-id=@item.ProductCategoryId>
+                <div class="d-flex">
+                    <div style="width:90%">- @item.Name</div>
+                    <div class="buttons edit-button" data-id=@item.ProductCategoryId style="text-align:right; width:5%; margin:0 2px"><span class="fas fa-edit"></span></div>
+                    <a class="buttons delete-button" type="button" href="/Admin/ProductCategories/Delete?id=@item.ProductCategoryId">
+                        <span class="fas fa-trash-alt" style="color:red"></span>
+                    </a>
+                </div>
+            </li>
+        }
+    }
+}

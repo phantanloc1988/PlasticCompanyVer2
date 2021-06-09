@@ -1,0 +1,218 @@
+﻿@model PlasticCompany.Models.ProductCategory
+@{
+    ViewData["Title"] = "Product Categories Management";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{
+    var cateList = ViewBag.CategoriesList as List<PlasticCompany.Models.ProductCategory>;
+    var cateLv1List = cateList.Where(x => x.ParentId == 0).ToList();
+    var cateLv2List = cateList.Where(x => x.Level == 2).ToList();
+}
+
+@section Footer {
+    <script src="~/js/Admin/ProductCategories/Index.js"></script>
+}
+
+<h2 class="h4">Danh mục sản phẩm</h2>
+<div id="product-categories">
+    <div class="btn-toolbar dropdown">
+        <button class="btn btn-primary btn-sm mr-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fas fa-plus mr-2"></span>Thêm danh mục
+        </button>
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="dropdown-menu dashboard-dropdown dropdown-menu-left mt-2" style="">
+            <a class="dropdown-item font-weight-bold" data-toggle="modal" data-target="#modal-level-one-category">Danh mục cấp 1</a>
+            <a class="dropdown-item font-weight-bold" data-toggle="modal" data-target="#modal-level-two-category">Danh mục cấp 2</a>
+        </div>
+    </div>
+    <div class="display-categories row mt-5">
+        <div class="level-1 col-4">
+            <div class="font-weight-bold btn btn-tertiary btn-sm disabled">Cấp 1</div>
+            <div class="border-dark shadow-sm ml-0 mt-1 content">
+                <ul>
+                    @{
+                        if (cateLv1List.Count == 0)
+                        {
+                            <li class="first-li">...</li>
+                        }
+                    }
+                    @{
+                        foreach (var item in cateLv1List)
+                        {
+                            <li data-id=@item.ProductCategoryId>
+                                <div class="d-flex">
+                                    @{
+                                        if (item.IsHasChildren == true)
+                                        {
+                                            <div style="width:90%">- @item.Name:     >>>></div>
+                                        }
+                                        else
+                                        {
+                                            <div style="width:90%">- @item.Name</div>
+                                        }
+
+                                    }
+
+                                    <div class="buttons edit-button" data-id=@item.ProductCategoryId style="text-align:right; width:5%; margin:0 2px"><span class="fas fa-edit"></span></div>
+                                    <a class="buttons delete-button" type="button" href="/Admin/ProductCategories/Delete?id=@item.ProductCategoryId">
+                                        <span class="fas fa-trash-alt" style="color:red"></span>
+                                    </a>
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="level-2 col-4 d-none">
+            <div class="font-weight-bold btn btn-tertiary btn-sm disabled">Cấp 2</div>
+            <div class="border-dark shadow-sm ml-0 mt-1 content">
+                <ul>                   
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Level 1 Modal Content -->
+    <div class="modal fade" id="modal-level-one-category" tabindex="-1" role="dialog" aria-labelledby="modal-level-one-category" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="card border-light p-4">
+                        <div class="card-header text-center pb-0">
+                            <h2 class="mb-0 h5">Thêm Danh mục cấp 1</h2>
+                        </div>
+                        <div class="card-body">
+                            <form action="/Admin/ProductCategories/Create" class="create-product-categories-form" method="post">
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label>Username</label>
+                                    <input type="text" asp-for="Name" class="form-control" placeholder="....">
+                                    <span name="txtName" class="text-danger my-errors"></span>
+                                </div>
+                                <input type="number" value="1" class="d-none" asp-for="Level">
+                                <!-- End of Form -->
+                                <button type="submit" class="btn btn-block btn-primary submit-btn">Thêm danh mục</button>
+                                <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Huỷ</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Level 1 Modal Content -->
+    <!-- Level 2 Modal Content -->
+    <div class="modal fade" id="modal-level-two-category" tabindex="-1" role="dialog" aria-labelledby="modal-level-two-category" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="card border-light p-4">
+                        <div class="card-header text-center pb-0">
+                            <h2 class="mb-0 h5">Thêm Danh mục cấp 2</h2>
+                        </div>
+                        <div class="card-body">
+                            <form action="/Admin/ProductCategories/Create" class="create-product-categories-form" method="post">
+                                <!-- Form -->
+                                <div class="mb-4 select-level-one">
+                                    <label class="my-1 me-2" for="country">Danh mục cấp 1</label>
+                                    <select id="select-list-level-one" asp-for="ParentId" class="form-select" aria-label="Default select example">
+                                        <option value=0>Chọn danh mục cấp 1</option>
+                                        @{
+                                            foreach (var item in cateLv1List)
+                                            {
+                                                <option value=@item.ProductCategoryId>@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4 prop-name d-none">
+                                    <label>tên danh mục</label>
+                                    <input type="text" asp-for="Name" class="form-control" placeholder="....">
+                                    <span name="txtName" class="text-danger my-errors"></span>
+                                </div>
+                                <input type="number" value="2" class="d-none" asp-for="Level">
+                                <!-- End of Form -->
+                                <button type="submit" class="btn btn-block btn-primary submit-btn">Thêm danh mục</button>
+                                <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Huỷ</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Level 2 Modal Content -->
+    <!-- Edit Level 1 Modal Content -->
+    <div class="modal fade" id="modal-edit-level-one-category" tabindex="-1" role="dialog" aria-labelledby="modal-level-one-category" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="card border-light p-4">
+                        <div class="card-header text-center pb-0">
+                            <h2 class="mb-0 h5">Thêm Danh mục cấp 1</h2>
+                        </div>
+                        <div class="card-body">
+                            <form action="/Admin/ProductCategories/Edit" method="post">
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label>Tên danh mục</label>
+                                    <input type="text" asp-for="Name" class="form-control name-input" placeholder="....">
+                                    <span name="txtName" class="text-danger my-errors"></span>
+                                </div>
+                                <input type="number" value="" class="d-none level-input" asp-for="Level">
+                                <input type="number" value="" class="d-none id-input" asp-for="ProductCategoryId">
+                                <!-- End of Form -->
+                                <button type="submit" class="btn btn-block btn-primary submit-btn" data-dismiss>Sửa danh mục</button>
+                                <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Huỷ</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Edit Level 1 Modal Content -->
+    <!-- Edit Level 2 Modal Content -->
+    <div class="modal fade" id="modal-edit-level-two-category" tabindex="-1" role="dialog" aria-labelledby="modal-edit-level-two-category" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="card border-light p-4">
+                        <div class="card-header text-center pb-0">
+                            <h2 class="mb-0 h5">Sửa Danh mục cấp 2</h2>
+                        </div>
+                        <div class="card-body">
+                            <form action="/Admin/ProductCategories/Edit" method="post">
+                                <!-- Form -->
+                                <div class="mb-4 select-level-one">
+                                    <label class="my-1 me-2" for="country">Danh mục cấp 1</label>
+                                    <select id="select-list-level-one" asp-for="ParentId" class="form-select" aria-label="Default select example">
+                                        <option value=0>Chọn danh mục cấp 1</option>
+                                        @{
+                                            foreach (var item in cateLv1List)
+                                            {
+                                                <option value=@item.ProductCategoryId>@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label>Tên danh mục</label>
+                                    <input type="text" asp-for="Name" class="form-control name-input" placeholder="....">
+                                    <span name="txtName" class="text-danger my-errors"></span>
+                                </div>
+                                <input type="number" value="" class="d-none level-input" asp-for="Level">
+                                <input type="number" value="" class="d-none id-input" asp-for="ProductCategoryId">
+                                <!-- End of Form -->
+                                <button type="submit" class="btn btn-block btn-primary submit-btn" data-dismiss>Sửa danh mục</button>
+                                <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Huỷ</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Edit Level 1 Modal Content -->
+</div>

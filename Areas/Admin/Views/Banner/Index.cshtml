@@ -1,0 +1,102 @@
+﻿@model List<PlasticCompany.Models.Image>;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Footer{
+    <script src="~/js/Admin/Banner/Banners.js"></script>
+}
+@section Header{
+
+    <link href="~/css/Admin/Banner/Index.css" rel="stylesheet" />
+}
+@{
+    var banner1 = Model.Where(x => x.Name == "Banner1").FirstOrDefault();
+    var banner2 = Model.Where(x => x.Name == "Banner2").FirstOrDefault();
+    var banner3 = Model.Where(x => x.Name == "Banner3").FirstOrDefault();
+}
+<h2 class="h4">Quản lý Banner</h2>
+<div id="banners-list" class="card card-body bg-white border-light shadow-sm mb-4 row">
+    <div class="d-xl-flex align-items-center col-12 banner-item">
+        <div>
+            <!-- Avatar -->
+            <div class="user-avatar xl-avatar mb-3">
+                @if (banner1 != null)
+                {
+                    <img class="rounded" src="../../Images/Other/Banners/@banner1.Source" alt="change avatar">
+                }
+                else
+                {
+                    <img class="rounded" src="https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png" alt="change avatar">
+                }
+            </div>
+        </div>
+        <div class="file-field">
+            <div class="d-flex justify-content-xl-center ml-xl-3">
+                <div class="d-flex">
+                    <span class="icon icon-md"><span class="fas fa-paperclip mr-3"></span></span>
+                    <input class="banner-input p-0" type="file" data-id="1">
+                    <div class="d-md-block text-left align-self-center">
+                        <div class="font-weight-normal text-dark">Chọn Banner số 1</div>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-danger btn-sm ml-2 mt-1" href="/Admin/Banner/Delete?index=1">Xoá</a>
+
+        </div>
+    </div>
+    <div class="d-xl-flex align-items-center col-12 banner-item">
+        <div>
+            <!-- Avatar -->
+            <div class="user-avatar xl-avatar mb-3">
+                @if (banner2 != null)
+                {
+                    <img class="rounded" src="../../Images/Other/Banners/@banner2.Source" alt="change avatar">
+                }
+                else
+                {
+                    <img class="rounded" src="https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png" alt="change avatar">
+                }
+            </div>
+        </div>
+        <div class="file-field">
+            <div class="d-flex justify-content-xl-center ml-xl-3">
+                <div class="d-flex">
+                    <span class="icon icon-md"><span class="fas fa-paperclip mr-3"></span></span>
+                    <input class="banner-input p-0" type="file" data-id="2">
+                    <div class="d-md-block text-left align-self-center">
+                        <div class="font-weight-normal text-dark">Chọn Banner số 2</div>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-danger btn-sm ml-2 mt-1" href="/Admin/Banner/Delete?index=2">Xoá</a>
+        </div>
+    </div>
+    <div class="d-xl-flex align-items-center col-12 banner-item">
+        <div>
+            <!-- Avatar -->
+            <div class="user-avatar xl-avatar mb-3">
+                @if (banner3 != null)
+                {
+                    <img class="rounded" src="../../Images/Other/Banners/@banner3.Source" alt="change avatar">
+                }
+                else
+                {
+                    <img class="rounded" src="https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png" alt="change avatar">
+                }
+            </div>
+        </div>
+        <div class="file-field">
+            <div class="d-flex justify-content-xl-center ml-xl-3">
+                <div class="d-flex">
+                    <span class="icon icon-md"><span class="fas fa-paperclip mr-3"></span></span>
+                    <input class="banner-input p-0" type="file" data-id="3">
+                    <div class="d-md-block text-left align-self-center">
+                        <div class="font-weight-normal text-dark">Chọn Banner số 3</div>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-danger btn-sm ml-2 mt-1" href="/Admin/Banner/Delete?index=3">Xoá</a>
+        </div>
+    </div>
+</div>

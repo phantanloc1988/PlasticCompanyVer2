@@ -1,0 +1,75 @@
+﻿@model PlasticCompany.Areas.Admin.ViewModels.Products.RequestCreateProductVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Footer{    
+    <script src="~/js/Admin/Products/Create.js"></script>
+}
+
+@{ 
+    var categoriesList = ViewBag.Categories as List<PlasticCompany.Models.ProductCategory>;
+}
+
+<h2 class="h4">Thêm sản phẩm</h2>
+<div class="row" id="create-product">
+    <form id="create-product-form" action="/" method="post">
+        <div class="col-8 select-categories">
+            <div class="row">
+                <div class="mb-4 col-6">
+                    <label class="my-1 me-2" for="country">Danh mục cấp 1</label>
+                    <select name="level1" class="form-select">
+                        <option value=0 selected="selected">Vui lòng chọn</option>
+                        @{
+                            var level1Cate = categoriesList.Where(x => x.Level == 1).ToList();
+                            foreach (var item in level1Cate)
+                            {
+                                <option value=@item.ProductCategoryId>@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="mb-4 col-6 d-none">
+                    <label class="my-1 me-2" for="country">Danh mục cấp 2</label>
+                    <select name="level2" class="form-select">
+                        <option value=0 selected="selected">Vui lòng chọn</option>                       
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 Info d-none">
+            <div class="row">
+                <div class="col-4">
+                    <div class="mb-4">
+                        <label>Tên sản phẩm</label>
+                        <input name="txtName" type="text" class="form-control" aria-describedby="emailHelp">
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label>Mã sản phẩm</label>
+                        <input name="txtSku" type="text" class="form-control" aria-describedby="emailHelp">
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label>Giá</label><br>
+                        <small class="form-text text-muted">"Giá liên hệ": vui lòng nhập giá bằng 0</small>
+                        <input name="numPrice" type="number" class="form-control" aria-describedby="emailHelp">
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Hình ảnh</label>
+                        <input name="files" class="form-control" type="file" id="formFile">
+                    </div>
+                </div>
+                <div class="my-4 col-12">
+                    <label for="textarea">Mô tả sản phẩm</label>
+                    <textarea id="summernote" name="editordata"></textarea>
+                </div>
+            </div>
+            <button id="submit-button" class="btn btn-tertiary" type="submit">Tạo sản phẩm</button>
+            <a class="btn btn-danger" href="/Admin/Products/Index">Huỷ</a>
+        </div>
+       
+        
+    </form>
+</div>

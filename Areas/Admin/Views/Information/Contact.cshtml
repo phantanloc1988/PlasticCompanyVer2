@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Footer{
+    <script src="~/js/Admin/Informations/Informations.js"></script>
+}
+@{ 
+    var content = ViewBag.Content as string;
+}
+<div id="contact-information">
+    <h2 class="h4">Liên hệ</h2><br>
+    <div>@Html.Raw(Model);</div>
+    <div class="my-4 col-12">
+        <label for="textarea">Nội dung</label>
+        <textarea id="contact-text-editor" name="editordata"></textarea>
+    </div>
+    <button id="submit-button" class="btn btn-tertiary" type="button">Lưu</button>
+    <a class="btn btn-danger" href="/Admin/Products/Index">Huỷ</a>
+</div>
+<div class="col-md-4">
+    <!-- Modal Content -->
+    <div class="modal fade" id="fail-modal-notification" tabindex="-1" aria-labelledby="modal-notification" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-info modal-dialog-centered" role="document">
+            <div class="modal-content bg-gradient-secondary">
+                <div class="modal-body">
+                    <div class="py-3 text-center">
+                        <span class="modal-icon display-1-lg"><span class="fas fa-exclamation-circle"></span></span>
+                        <h2 class="h4 modal-title my-3">Không thành công!</h2>
+                        <p>Lưu nội dung thất bại</p>
+                    </div>
+                </div>
+                <div class="modal-footer" style="align-self:center">
+                    <button type="button" class="btn btn-lg btn-white" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Modal Content -->
+</div>
+
+<div class="col-md-4">
+    <!-- Modal Content -->
+    <div class="modal fade" id="success-modal-achievement" tabindex="-1" aria-labelledby="modal-achievement" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-tertiary modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="py-3 px-5 text-center">
+                        <span class="modal-icon display-1-lg"><span class="fas fa-medal"></span></span>
+                        <h2 class="h3 modal-title mb-3 text-white">Chúc mừng</h2>
+                        <p class="mb-4 text-white">Bạn đã lưu thành công</p>
+                        <div class="progress-wrapper">
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="align-self:center">
+                    <a href="/Admin/Information/Contact" class="btn btn-md btn-white text-tertiary" data-dismiss="modal">Đóng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Modal Content -->
+</div>
+
+

@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PlasticCompany</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png">
+
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="~/css/Template/bootstrap.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="~/css/Template/animate.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="~/css/Template/meanmenu.min.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="~/css/Template/owl.carousel.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="~/css/Template/font-awesome.min.css">
+    <!-- flexslider.css-->
+    <link rel="stylesheet" href="~/css/Template/flexslider.css">
+    <!-- chosen.min.css-->
+    <link rel="stylesheet" href="~/css/Template/chosen.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="~/css/Template/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/css/Template/responsive.css">
+    <!-- modernizr css -->
+    <script src="~/js/Template/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <header>
+        <!-- main-menu-area-start -->
+        <div class="main-menu-area hidden-sm hidden-xs sticky-header-1" id="header-sticky">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="menu-area">
+                            <nav>
+                                <ul>
+                                    <li class="active">
+                                        <a href="index.html">Trang Chủ</a>
+                                    </li>
+                                    <li>
+                                        <a href="product-details.html">Về Công Ty</a>
+                                    </li>
+                                    <li>
+                                        <a href="product-details.html">Sản Phẩm<i class="fa fa-angle-down"></i></a>
+                                        <div class="mega-menu">
+                                            <span>
+                                                <a href="#" class="title">Shirts</a>
+                                                <a href="shop.html">Tops & Tees</a>
+                                                <a href="shop.html">Sweaters </a>
+                                                <a href="shop.html">Hoodies</a>
+                                                <a href="shop.html">Jackets & Coats</a>
+                                            </span>
+                                            <span>
+                                                <a href="#" class="title">Tops & Tees</a>
+                                                <a href="shop.html">Long Sleeve </a>
+                                                <a href="shop.html">Short Sleeve</a>
+                                                <a href="shop.html">Polo Short Sleeve</a>
+                                                <a href="shop.html">Sleeveless</a>
+                                            </span>
+                                            <span>
+                                                <a href="#" class="title">Jackets</a>
+                                                <a href="shop.html">Sweaters</a>
+                                                <a href="shop.html">Hoodies</a>
+                                                <a href="shop.html">Wedges</a>
+                                                <a href="shop.html">Vests</a>
+                                            </span>
+                                            <span>
+                                                <a href="#" class="title">Jeans Pants</a>
+                                                <a href="shop.html">Polo Short Sleeve</a>
+                                                <a href="shop.html">Sleeveless</a>
+                                                <a href="shop.html">Graphic T-Shirts</a>
+                                                <a href="shop.html">Hoodies</a>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="product-details.html">Tin tức</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Video</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Quy trình đặt hàng</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Liên hệ</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        @*<div class="safe-area">
+                                <a href="product-details.html">sales off</a>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main-menu-area-end -->
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- footer-area-start -->
+    <footer>       
+        <!-- footer-mid-start -->
+        <div class="footer-mid ptb-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <div class="single-footer mrg-sm">
+                            <div class="footer-title mb-20">
+                                <h3>Thông tin liên hệ</h3>
+                            </div>
+                            <div class="footer-contact">
+                                <p class="adress">
+                                    <span>PLASTIC COMPANY</span>
+                                    Toà nhà Bitexco
+                                </p>
+                                <p><span>Điện thoại:</span> (+1)866-540-3229</p>
+                                <p><span>Email:</span>  support@hastech.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-12">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.512765223099!2d106.70220251474899!3d10.77198389232452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f41476fee6b%3A0x15de2e5129cc54f!2zQml0ZXhjbyBGaW5hbmNpYWwgVG93ZXIsIELhur9uIE5naMOpLCBRdeG6rW4gMSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1622801252423!5m2!1sen!2s" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-mid-end -->
+        <!-- footer-bottom-start -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row bt-2">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="copy-right-area">
+                            <p>Copyright ©<a href="#">Plastic Company</a>. All Right Reserved.</p>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom-end -->
+    </footer>
+    <!-- footer-area-end -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- all js here -->
+    <!-- jquery latest version -->
+    <script src="~/js/Template/vendor/jquery-1.12.0.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/js/Template/bootstrap.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="~/js/Template/owl.carousel.min.js"></script>
+    <!-- meanmenu js -->
+    <script src="~/js/Template/jquery.meanmenu.js"></script>
+    <!-- wow js -->
+    <script src="~/js/Template/wow.min.js"></script>
+    <!-- jquery.parallax-1.1.3.js -->
+    <script src="~/js/Template/jquery.parallax-1.1.3.js"></script>
+    <!-- jquery.countdown.min.js -->
+    <script src="~/js/Template/jquery.countdown.min.js"></script>
+    <!-- jquery.flexslider.js -->
+    <script src="~/js/Template/jquery.flexslider.js"></script>
+    <!-- chosen.jquery.min.js -->
+    <script src="~/js/Template/chosen.jquery.min.js"></script>
+    <!-- jquery.counterup.min.js -->
+    <script src="~/js/Template/jquery.counterup.min.js"></script>
+    <!-- waypoints.min.js -->
+    <script src="~/js/Template/waypoints.min.js"></script>
+    <!-- plugins js -->
+    <script src="~/js/Template/plugins.js"></script>
+    <!-- main js -->
+    <script src="~/js/Template/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
