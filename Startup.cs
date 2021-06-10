@@ -40,8 +40,11 @@ namespace PlasticCompany
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddDbContext<PlasticCompanyContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("MyConnectionString")));
+
+
             services.AddMvcCore().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IMyServices, MyServices>();
             services.AddTransient<IProductCategories, ProductCategoriesServices>();

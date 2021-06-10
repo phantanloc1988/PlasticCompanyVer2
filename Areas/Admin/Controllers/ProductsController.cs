@@ -37,7 +37,6 @@ namespace PlasticCompany.Areas.Admin.Controllers
             return View(onePageOfProducts);
         }
 
-
         public IActionResult Create()
         {
             ViewBag.Categories = _productCategoriesServices.GetAllProductCategories();
@@ -62,11 +61,30 @@ namespace PlasticCompany.Areas.Admin.Controllers
             return Json(new { status = "Fail", url = Url.Action("Create", "Products") });
         }
 
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var product = _productServices.GetProductById(id);
             ViewBag.Categories = _productCategoriesServices.GetAllProductCategories();
             return View(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string data)
+        {
+            if (Request.Form.Count > 0)
+            {
+                Product product = JsonConvert.DeserializeObject<Product>(Request.Form["Product"]);
+                var files = Request.Form.Files;
+
+                var result = await _productServices.EditProduct(product, (List<IFormFile>)files);
+
+                if (result == "Ok")
+                {
+                    return Json(new { status = result, url = Url.Action("Index", "Products") });
+                }
+            }
+            return Json(new { status = "Fail", url = Url.Action("Create", "Products") });
         }
     }
 }
