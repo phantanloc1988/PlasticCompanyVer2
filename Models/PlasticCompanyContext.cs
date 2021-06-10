@@ -25,7 +25,7 @@ namespace PlasticCompany.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(" Data Source=LAPTOP-LOD3HJR2;Initial Catalog=PlasticCompany;User ID=sa;Password=123456");
+                optionsBuilder.UseSqlServer("Data Source=23.99.208.69\\MSSQLSERVER2019,1435;Initial Catalog=PlasticCompany;User ID=sa;Password=123QWEasd");
             }
         }
 

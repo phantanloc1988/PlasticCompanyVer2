@@ -4,13 +4,16 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
     
 }
+@section Footer{ 
+    <script src="~/js/Admin/Products/Edit.js"></script>
+}
 @{ 
     var categoriesList = ViewBag.Categories as List<ProductCategory>;
 }
 
 <h2 class="h4">Chỉnh sửa sản phẩm</h2>
 <div class="row" id="edit-product">
-    <form id="edit-product-form" action="/Admin/Products/Edit" method="post">
+    <form id="edit-product-form" data-product-id=@Model.ProductId>
         <div class="col-12">
             <p class="text-info mb-0"></p>
         </div>
@@ -19,36 +22,51 @@
                 <div class="col-4">
                     <div class="mb-4">
                         <label>Tên sản phẩm</label>
-                        <input name="txtName" placeholder="@Model.Name"type="text" class="form-control" aria-describedby="emailHelp">
+                        <input name="txtName" placeholder="@Model.Name" type="text" class="form-control">
                         <span class="text-danger"></span>
                     </div>
                     <div class="mb-4">
                         <label>Mã sản phẩm</label>
-                        <input name="txtSku" placeholder="Model.Sku" type="text" class="form-control" aria-describedby="emailHelp">
+                        <input name="txtSku" placeholder="@Model.Sku" type="text" class="form-control">
                         <span class="text-danger"></span>
                     </div>
                     <div class="mb-4">
                         <label>Giá</label><br>
                         <small class="form-text text-muted">"Giá liên hệ": vui lòng nhập giá bằng 0</small>
-                        <input name="numPrice" placeholder=" @Model.Price" type="number" class="form-control" aria-describedby="emailHelp">
+                        <input name="numPrice" placeholder="@Model.Price" type="number" class="form-control">
                         <span class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Hình ảnh</label>
-                        <input name="files" class="form-control" type="file" id="formFile">
-                        <div class="main-image">
-                            <img src="@Model.MainImage"/>
+                        <label class="form-label">Ảnh đại diện</label>
+                        <div style="text-align: center;display:flex;align-items:center">
+                            <div class="user-avatar xl-avatar">
+                                <img src="~/Images/ProducImages/@Model.MainImage" id="display-main-image" class="rounded w-100 h-100" alt="change avatar">
+                            </div>
+                            <input name="files" class="form-control ml-2" type="file" id="formFile">
+                        </div>
+                    </div>
+                    <div class="form-check p-0">
+                        <div class="d-flex">
+                            <div>
+                                <label class="form-label float-left">Trạng thái sản phẩm:</label>
+                            </div>
+                            <div class="ml-5">
+                                <input class="form-check-input" name="checkStatus" checked="checked" type="checkbox" value="false" id="defaultCheck10">
+                                <label class="form-check-label" for="defaultCheck10">
+                                    Còn hàng
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="my-4 col-12">
                     <label for="textarea">Mô tả sản phẩm</label>
-                    <div class="description-content d-none">@Html.Raw(Model.Description)</div>
+                    <div class="description-content d-none" data-content-length="">@Html.Raw(Model.Description)</div>
                     <textarea id="description-content-editor" name="editordata"></textarea>
                 </div>
             </div>
-            <button id="submit-button" class="btn btn-tertiary" type="submit">Sửa sản phẩm</button>
-            <a class="btn btn-danger" href="/Admin/Products/Edit">Huỷ</a>
+            <button id="submit-button" class="btn btn-tertiary" type="submit" data-id=@Model.ProductId>Sửa sản phẩm</button>
+            <a class="btn btn-danger" href="/Admin/Products/Index">Quay lại</a>
         </div>
     </form>
 </div>

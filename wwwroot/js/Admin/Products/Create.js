@@ -1,52 +1,62 @@
-﻿
-var createProduct = {
+﻿var createProduct = {
     init: function () {
         createProduct.validate();
         this.selectCategory();
+        this.onChangeMainImage();
     },
 
     submitForm: function () {
         var locationDescription = $('#create-product-form .note-editable');
 
-        var name = $('input[name="txtName"]').val();
+        var productName = $('input[name="txtName"]').val();
         var sku = $('input[name="txtSku"]').val();
         var price = $('input[name="numPrice"]').val();
         var description = locationDescription.html();
         var descriptionImages = locationDescription.find('p img');
-        var imageFiles = $('#formFile').get(0).files;
+        var status = $('input[name="checkStatus"]').attr('checked') === 'checked' ? true : false;
+        var mainImage = $('#formFile').get(0).files;
         var categoryLevel1 = $('select[name="level1"]').val();
         var categoryLevel2 = $('select[name="level2"]').val();
         var category = categoryLevel2 !== "0" ? categoryLevel2 : categoryLevel1;
 
-        //Add Info Product
-        var product = {
-            Name: name,
-            Sku: sku,
-            Price: parseInt(price),
-            Description: description,
-            ProductCategoryId: parseInt(category),
-        };
-
         var data = new FormData();
 
-        data.append("Product", JSON.stringify(product));
+        //Add Image File        
+        data.append("MainImage", mainImage[0])
 
-        //Add Image File
-        data.append("MainImage", imageFiles[0])
-               
-        //Add Des Image file                
+        //Add Des Image file     
         if (descriptionImages.length >= 1) {
             for (var i = 0; i < descriptionImages.length; i++) {
                 var name = "DesImage" + i;
                 var uri = descriptionImages[i].currentSrc;
-                var fileName = descriptionImages[0].dataset.filename;
+                var fileName = `${i}-${Date.now().toString()}-${Math.random()}.png`;
 
                 // convert uri to File
                 var file = this.convertToFile(uri, fileName);
+                data.append(name, file)
 
-                data.append(name, file)                
+                //Change path src image in HTML
+                var imageElement = descriptionImages[i];
+                imageElement.removeAttribute('src')
+                var path = "Images/ProductImages/"
+                var newSrc = path + fileName;
+                imageElement.src = newSrc;
+
             };
-        } 
+        }
+
+        console.log(description);
+        //Add Info Product
+        var product = {
+            Name: productName,
+            Sku: sku,
+            Price: parseInt(price),
+            Description: description,
+            ProductCategoryId: parseInt(category),
+            Status: status
+        };
+
+        data.append("Product", JSON.stringify(product));
 
         $.ajax({
             url: '/Admin/Products/Create',
@@ -98,7 +108,7 @@ var createProduct = {
                 var id = $(this).val();
 
                 $.ajax({
-                    type:"POST",
+                    type: "POST",
                     url: '/Admin/ProductCategories/FindChilrenOfCategory',
                     data: { id: id },
                     success: function (res) {
@@ -107,7 +117,7 @@ var createProduct = {
                             result += `<option value=${res[i].productCategoryId}>${res[i].name}</option>`
                         }
                         // level-1 has children
-                        
+
                         var optionDefault = '<option value=0 selected="selected">Vui lòng chọn</option>';
 
                         $('#create-product-form select[name="level2"]').html('');
@@ -123,11 +133,13 @@ var createProduct = {
                         // level-1 has not children
                         if (res.length === 0) {
                             $('#create-product-form select[name="level2"]').parent().addClass('d-none');
+                            $('#create-product-form .Info').removeClass('d-none');
+
                         }
                     }
                 })
 
-                
+
             }//level 2 selected successFully
             else if (levelOfSelectList === 'level2' && $(this).val() !== "0") {
                 $('#create-product-form .Info').removeClass('d-none');
@@ -137,21 +149,80 @@ var createProduct = {
             } else {
                 $('#create-product-form .Info').addClass('d-none');
                 $('#create-product-form select[name="level2"]').parent().addClass('d-none');
-                
-            } 
+
+            }
         })
-    }
+    },
+
+    onChangeMainImage: function () {
+        $('#formFile').change(function () {
+            helpers.displayMainImage(this)
+        })
+        
+    },
+
 }
 
 var textEditor = {
     init: function () {
-        console.log('edit')
         this.editor();
     },
 
     editor: function () {
-        $('#summernote').summernote();
+        $('#summernote').summernote({
+            heigth: 1000,
+            //callbacks: {
+            //    onImageUpload: function (files, editor, welEditable) {
+            //        console.log(files)
+            //        var a = files
+            //        var b = 0;
+
+            //        sendFile(files[0], editor, welEditable);
+            //    }
+            //}
+        });
     }
+}
+
+
+var helpers = {
+
+    uploadFile: function (file) {
+        data = new FormData();
+        data.append("file", file);
+
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "/Admin/File/SaveImageFromSummernote",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (url) {
+                //$('#summernote').summernote("insertImage", url);
+            }
+        });
+    },
+
+    changeSrcImageHtml: function (path, nameFile) {
+        var imageElement = descriptionImages[i];
+        var newSrc = path + nameFile;
+        imageElement.attr("src", newSrc)
+    },
+
+    displayMainImage: function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#display-main-image').attr('src', e.target.result);
+                $('#display-main-image').parent().removeClass('d-none');
+            }
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            alert('select a file to see preview');
+            $('#display-main-image').attr('src', '');
+        }
+    },
 }
 
 textEditor.init();

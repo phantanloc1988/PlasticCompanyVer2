@@ -30,3 +30,21 @@
    at PlasticCompany.Common.MyServices.MyServices.SaveFile(String folderPath, IFormFile File, String nameFile) in D:\Lap Trinh\NewProjects\PlasticCompany\Common\MyServices\MyServices.cs:line 18
    at PlasticCompany.Areas.Admin.Services.BannerServices.BannerServices.CreateBanner(Int32 index, IFormFile file) in D:\Lap Trinh\NewProjects\PlasticCompany\Areas\Admin\Services\BannerServices\BannerServices.cs:line 34
 6/8/2021 3:31:19 PM - System.Private.CoreLib
+6/10/2021 1:49:58 AM - Object reference not set to an instance of an object.
+6/10/2021 1:49:58 AM -    at PlasticCompany.Areas.Admin.Services.ProductsServices.ProductServices.CreateProduct(Product data, List`1 files) in D:\Lap Trinh\NewProjects\PlasticCompany-Version2\PlasticCompany\Areas\Admin\Services\ProductsServices\ProductServices.cs:line 48
+6/10/2021 1:49:58 AM - PlasticCompany
+6/10/2021 1:52:40 AM - Object reference not set to an instance of an object.
+6/10/2021 1:52:40 AM -    at PlasticCompany.Areas.Admin.Services.ProductsServices.ProductServices.CreateProduct(Product data, List`1 files) in D:\Lap Trinh\NewProjects\PlasticCompany-Version2\PlasticCompany\Areas\Admin\Services\ProductsServices\ProductServices.cs:line 48
+6/10/2021 1:52:40 AM - PlasticCompany
+6/10/2021 1:59:27 AM - Object reference not set to an instance of an object.
+6/10/2021 1:59:27 AM -    at PlasticCompany.Areas.Admin.Services.ProductsServices.ProductServices.CreateProduct(Product data, List`1 files) in D:\Lap Trinh\NewProjects\PlasticCompany-Version2\PlasticCompany\Areas\Admin\Services\ProductsServices\ProductServices.cs:line 48
+6/10/2021 1:59:27 AM - PlasticCompany
+6/10/2021 2:02:00 AM - Object reference not set to an instance of an object.
+6/10/2021 2:02:00 AM -    at PlasticCompany.Areas.Admin.Services.ProductsServices.ProductServices.CreateProduct(Product data, List`1 files) in D:\Lap Trinh\NewProjects\PlasticCompany-Version2\PlasticCompany\Areas\Admin\Services\ProductsServices\ProductServices.cs:line 48
+6/10/2021 2:02:00 AM - PlasticCompany
+6/10/2021 3:39:10 AM - Object reference not set to an instance of an object.
+6/10/2021 3:39:10 AM -    at PlasticCompany.Areas.Admin.Services.ProductsServices.ProductServices.CreateProduct(Product data, List`1 files) in D:\Lap Trinh\NewProjects\PlasticCompany-Version2\PlasticCompany\Areas\Admin\Services\ProductsServices\ProductServices.cs:line 48
+6/10/2021 3:39:10 AM - PlasticCompany
+6/10/2021 7:30:46 AM - Object reference not set to an instance of an object.
+6/10/2021 7:30:46 AM -    at PlasticCompany.Areas.Admin.Services.ProductsServices.ProductServices.CreateProduct(Product data, List`1 files) in D:\Lap Trinh\NewProjects\PlasticCompany-Version2\PlasticCompany\Areas\Admin\Services\ProductsServices\ProductServices.cs:line 62
+6/10/2021 7:30:46 AM - PlasticCompany
